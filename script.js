@@ -73,6 +73,8 @@ todoList.addEventListener("click", (event) => {
   } else if (e.target.classList.contains("moveDownBtn")) {
     moveTask("down");
   }
+  // Event listener for shuffle-button
+   shuffleBtn.addEventListener("click", shuffleTasks);
 });
 
     // shuffling tasks
@@ -82,10 +84,7 @@ todoList.addEventListener("click", (event) => {
       todoList.innerHTML = "";
       todoItems.forEach((item) => todoList.appendChild(item));
     }
-
-    shuffleBtn.addEventListener("click", shuffleTasks);
-
-    saveLocalTodos(inputText);
+      saveLocalTodos(inputText);
   }
 };
 
