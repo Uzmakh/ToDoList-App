@@ -66,16 +66,17 @@ const addTodo = () => {
     todoList.appendChild(li);
     inputBox.value = "";
 
-      // Event listener for move buttons
-todoList.addEventListener("click", (event) => {
-  if (e.target.classList.contains("moveUpBtn")) {
-    moveTask("up");
-  } else if (e.target.classList.contains("moveDownBtn")) {
-    moveTask("down");
-  }
-  // Event listener for shuffle-button
-   shuffleBtn.addEventListener("click", shuffleTasks);
-});
+    // Event listener for move buttons
+    todoList.addEventListener("click", (event) => {
+      if (
+        event.target.classList.contains("moveUpBtn") ||
+        event.target.classList.contains("moveDownBtn")
+      ) {
+        moveTask(event); // Pass the event object to moveTask
+      } else if (event.target.classList.contains("shuffleBtn")) {
+        shuffleTasks(); // Shuffle tasks without needing the event object
+      }
+    });
 
     // shuffling tasks
     function shuffleTasks() {
@@ -84,7 +85,7 @@ todoList.addEventListener("click", (event) => {
       todoList.innerHTML = "";
       todoItems.forEach((item) => todoList.appendChild(item));
     }
-      saveLocalTodos(inputText);
+    saveLocalTodos(inputText);
   }
 };
 
@@ -114,18 +115,22 @@ const updateTodo = (e) => {
 };
 // Move up and down
 function moveTask(e) {
-  let direction = "up";
-  direction = "down";
-  // const clickedElement = e.target; // Store the clicked element
+  const clickedElement = e.target; // Define clickedElement
+
+  // Check if the clicked element has a parent
   if (clickedElement.parentElement) {
-    // Check if it has a parent
-    //  const taskItem = e.target.parentElement;
     const taskItem = clickedElement.parentElement;
     const taskIndex = Array.from(todoList.children).indexOf(taskItem);
+    let direction = ""; // Initialize direction
 
-    console.log("taskIndex:", taskIndex);
-    console.log("direction:", direction);
+    // Set direction based on the clicked button
+    if (clickedElement.classList.contains("moveUpBtn")) {
+      direction = "up";
+    } else if (clickedElement.classList.contains("moveDownBtn")) {
+      direction = "down";
+    }
 
+    // Move the task based on direction
     if (direction === "up" && taskIndex > 0) {
       todoList.insertBefore(taskItem, taskItem.previousElementSibling);
     } else if (
@@ -135,16 +140,13 @@ function moveTask(e) {
       todoList.insertBefore(taskItem, taskItem.nextSibling.nextSibling);
     }
   } else {
-    // Handle case where user didn't click on a task element (optional)
     console.warn("Clicked outside a task element");
   }
-
 }
+
 // if (clickedElement.classList.contains("moveUpBtn") || clickedElement.classList.contains("moveDownBtn")) {
 //   // ... move task logic
 // }
-
-
 
 // Function to save local todo
 const saveLocalTodos = (todo) => {
