@@ -144,10 +144,6 @@ function moveTask(e) {
   }
 }
 
-// if (clickedElement.classList.contains("moveUpBtn") || clickedElement.classList.contains("moveDownBtn")) {
-//   // ... move task logic
-// }
-
 // Function to save local todo
 const saveLocalTodos = (todo) => {
   let todos;
