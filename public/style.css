@@ -101,23 +101,14 @@ ul li p {
   color: #008000;
 }
 
-ul li.completed {
-  color: #555;
-  text-decoration: line-through;
-}
-
 ul li p.completed {
   color: #555;
   text-decoration: line-through;
 }
-
 .clearBtn {
   color: hsl(62, 85%, 46%);
   background: #555;
   border-radius: 4px;
 }
 
-ul li p.completed {
-  color: #555;
-  text-decoration: line-through;
-}
+
