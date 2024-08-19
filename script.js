@@ -93,11 +93,7 @@ const addTodo = () => {
 const updateTodo = (e) => {
   console.log(e.target.innerHTML);
   if (e.target.innerHTML === "Remove") {
-    // Declare the confirmation variable
-    let confirmation;
-    // Assign the result of confirm to the confirmation variable
-    confirmation = confirm("Are you sure you want to remove this task?");
-
+    let confirmation = confirm("Are you sure you want to remove this task?");
     if (confirmation) {
       todoList.removeChild(e.target.parentElement);
       deleteLocalTodos(e.target.parentElement);
@@ -110,9 +106,10 @@ const updateTodo = (e) => {
     addBtn.value = "Edit";
     editTodo = e;
   } else if (e.target.innerHTML === "Complete") {
-    e.target.parentElement.classList.toggle("completed"); // Toggle completed class for visual effect
+    e.target.parentElement.querySelector("p").classList.toggle("completed");
   }
 };
+
 // Move up and down
 function moveTask(e) {
   const clickedElement = e.target; // Define clickedElement

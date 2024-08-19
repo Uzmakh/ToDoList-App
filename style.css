@@ -109,3 +109,8 @@ ul li.completed {
   background: #555;
   border-radius: 4px;
 }
+
+ul li p.completed {
+  color: #555;
+  text-decoration: line-through;
+}
